@@ -46,18 +46,18 @@ public class Tests {
 
 		helper.loginAndSelectModule("083", "083", "diagnostico");
 		
-		// Ir hacia la opciÛn de crear ordenes desde la pagina principal de diagnostico.
+		// Ir hacia la opci√≥n de crear ordenes desde la pagina principal de diagnostico.
 		DEPageIndex diagMainPage = new DEPageIndex(driver);
 		diagMainPage.assertPage();
 		diagMainPage.goToCreateOrders();
 		driver.manage().timeouts().implicitlyWait(Constants.MAX_WAIT, TimeUnit.SECONDS);
 		
-		// Crear una orden desde la p·gina correspondiente.
+		// Crear una orden desde la p√°gina correspondiente.
 		DEPageCapturaOrden pageCapturaOrden = new DEPageCapturaOrden(driver);
 		pageCapturaOrden.assertPage();
 		numOrden = pageCapturaOrden.createOrder();
 
-		// Esperar 2 segundos a que estÈ creada la orden para que se habilite el botÛn de logout.
+		// Esperar 2 segundos a que est√© creada la orden para que se habilite el bot√≥n de logout.
 		helper.sleepSeconds(2);
 		helper.assertLogOut();
 	}
@@ -65,16 +65,16 @@ public class Tests {
 	@Test(priority=2, dependsOnMethods="createOT", enabled=GENERAL_ENABLE_TEST)
 	@DataProvider(parallel=true)
 	public void generarReporteInspeccion() {
-		// Iniciar sesiÛn como "Alfredo RamÌrez" para diagnostico
+		// Iniciar sesi√≥n como "Alfredo Ram√≠rez" para diagnostico
 		helper.loginAndSelectModule("083", "083", "diagnostico");
 		
-		// Ir hacia la opciÛn de capturar inspecciones desde la pagina principal de diagnostico
+		// Ir hacia la opci√≥n de capturar inspecciones desde la pagina principal de diagnostico
 		DEPageIndex diagMainPage = new DEPageIndex(driver);
 		diagMainPage.assertPage();
 		diagMainPage.goToCapturarInspeccion();
 		driver.manage().timeouts().implicitlyWait(Constants.MAX_WAIT, TimeUnit.SECONDS);
 		
-		// Crear una inspacciÛn desde la p·gina correspondiente
+		// Crear una inspacci√≥n desde la p√°gina correspondiente
 		DEPageCapturaInspeccion capturaInspeccion = new DEPageCapturaInspeccion(driver);
 		capturaInspeccion.assertPage();
 		capturaInspeccion.crearReporte(numOrden);
@@ -85,7 +85,7 @@ public class Tests {
 	@Test(priority=2,  dependsOnMethods="createOT", enabled=GENERAL_ENABLE_TEST)
 	@DataProvider(parallel=true)
 	public void crearRecomendacionesDiagnostico() {
-		// Inicio de sesiÛn como "Alfredo RamÌrez" para diagnÛstico
+		// Inicio de sesi√≥n como "Alfredo Ram√≠rez" para diagn√≥stico
 		helper.loginAndSelectModule("083", "083", "diagnostico");
 		
 		DEPageIndex mainPage = new DEPageIndex(driver);
@@ -110,10 +110,10 @@ public class Tests {
 	@DataProvider(parallel=true)
 	public void asignarDiasOT() {
 		
-		// Inicio de sesiÛn cÛmo "Arturo Ramos" para produciÛn
+		// Inicio de sesi√≥n c√≥mo "Arturo Ramos" para produci√≥n
 		helper.loginAndSelectModule("020", "020", "produccion");
 		
-		// Ir hacia la opciÛn de crear ordenes desde la pagina principal de diagnostico.
+		// Ir hacia la opci√≥n de crear ordenes desde la pagina principal de diagnostico.
 		PRPageIndex mainPage = new PRPageIndex(driver);
 		mainPage.assertPage(); 
 		mainPage.goToAsignarDiasOrden();
@@ -127,15 +127,16 @@ public class Tests {
 	
 	@Test(priority=3, dependsOnMethods="asignarDiasOT", enabled=false)
 	public void crearCotizacion() {
-		// Inicio de sesiÛn como "Noemi" para comercial
+		// Inicio de sesi√≥n como "Noemi" para comercial
 		helper.loginAndSelectModule("258", "258", "comercial");
 		
-		// Ir a la opciÛn de crear cotizaciones desde la p·gina principal de comercial
+		// Ir a la opci√≥n de crear cotizaciones desde la p√°gina principal de comercial
 		COPageIndex mainPage = new COPageIndex(driver);
 		mainPage.assertPage();
 		mainPage.goToPageCotizaciones();
 		driver.manage().timeouts().implicitlyWait(Constants.MAX_WAIT, TimeUnit.SECONDS);
 		COPageCotizaciones pageCotizaciones = new COPageCotizaciones(driver);
+		// TODO: Realizar la captura de la primera parte de las cotizaciones
 	}
 	
 	@AfterMethod
